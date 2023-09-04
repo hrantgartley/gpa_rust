@@ -2,10 +2,10 @@ use rand::prelude::*;
 fn main() {
     let mut grades: Vec<i32> = Vec::new();
     // delcare a consant named MAX_GRADES and assign it the value 10
-    const MAX_GRADES: usize = 10;
+    let max_grade: usize = simulate();
 
-    for _ in 0..MAX_GRADES {
-        grades.push(simulate_grade());
+    for _ in 0..max_grade {
+        grades.push(grade_from_user());
     }
     println!("Grades: {:?}", grades);
     println!("Average: {}", calculate_average(&grades));
@@ -14,11 +14,12 @@ fn main() {
         "Average Letter Grade: {}",
         convert_to_letter(calculate_average(&grades) as i32)
     );
+    println!("Lowest Grade: {}", lowest_grade(&grades));
 }
 
-fn simulate_grade() -> i32 {
+fn simulate() -> usize {
     let mut rng = rand::thread_rng();
-    rng.gen_range(30..100)
+    rng.gen_range(1..=5)
 }
 
 fn convert_to_letter(grade: i32) -> String {
@@ -57,4 +58,13 @@ fn lowest_grade(grades: &Vec<i32>) -> i32 {
         }
     }
     low
+}
+
+fn grade_from_user() -> i32 {
+    println!("Enter a grade: ");
+    let mut grade = String::new();
+    std::io::stdin()
+        .read_line(&mut grade)
+        .expect("Failed to read line");
+    grade.trim().parse().expect("Please type a number!")
 }
