@@ -15,6 +15,7 @@ fn main() {
         convert_to_letter(calculate_average(&grades) as i32)
     );
     println!("Lowest Grade: {}", lowest_grade(&grades));
+    exit_message()
 }
 
 fn convert_to_letter(grade: i32) -> String {
@@ -75,4 +76,8 @@ fn get_num_classes() -> usize {
 
 fn welcome_message() {
     println!("Welcome to the Grade Calculator!");
+}
+
+fn exit_message() {
+    println!("Thanks for using the calculator!")
 }
