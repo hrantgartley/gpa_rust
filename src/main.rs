@@ -1,3 +1,5 @@
+#[allow(dead_code)]
+
 fn main() {
     welcome_message();
     let mut grades: Vec<i32> = Vec::new();
@@ -56,6 +58,15 @@ fn lowest_grade(grades: &Vec<i32>) -> i32 {
     low
 }
 
+fn validate_input(mut grade: i32) {
+    grade = grade_from_user();
+    loop {
+        if grade > 0 && grade <= 100 {
+            break;
+        }
+        println!("Please enter a valid grade: ");
+    }
+}
 fn grade_from_user() -> i32 {
     println!("Enter a grade: ");
     let mut grade = String::new();
